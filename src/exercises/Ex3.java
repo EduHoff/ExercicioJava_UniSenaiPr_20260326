@@ -17,7 +17,7 @@ public class Ex3 implements Exercise {
 
     @Override
     public void run(Scanner sc) {
-        System.out.println("--- Exercício 2 ---\n");
+        System.out.println("--- Exercício 3 ---\n");
 
         Integer[][] matrixA = new Integer[ROW_SIZE][COLUMN_SIZE];
         Integer[][] matrixB = new Integer[ROW_SIZE][COLUMN_SIZE];
