@@ -1,6 +1,9 @@
 package exercises;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
+
+import utils.ConsoleUtils;
 
 /* 
 Crie um programa que preencha uma matriz 3x3 com números inteiros
@@ -16,7 +19,7 @@ public class Ex1 implements Exercise {
     public void run(Scanner sc) {
         System.out.println("--- Exercício 1 ---\n");
 
-        Integer[] matrix = new Integer[ROW_SIZE][COLUMN_SIZE];
+        Integer[][] matrix = new Integer[ROW_SIZE][COLUMN_SIZE];
 
         int last_i = 0;
         int last_j = 0;
@@ -27,7 +30,7 @@ public class Ex1 implements Exercise {
 
                     for(int j=last_j; j<COLUMN_SIZE; j++){
 
-                        System.out.println("Digite um valor inteiro na linha "+(i+1)+" e coluna "+(j+1);
+                        System.out.println("Digite um valor inteiro na linha "+(i+1)+" e coluna "+(j+1));
                         System.out.print("||");
                         int num = sc.nextInt();
 
@@ -35,6 +38,7 @@ public class Ex1 implements Exercise {
                         last_j = j + 1;
                         ConsoleUtils.clear();
                     }
+                        last_j = 0;
                         last_i = i + 1;
                 }
             }catch(InputMismatchException e){
@@ -45,6 +49,14 @@ public class Ex1 implements Exercise {
                 ConsoleUtils.clear();
                 e.printStackTrace();
             }
+        }
+
+
+        for(int i=0; i<ROW_SIZE; i++){
+            for(int j=0; j<COLUMN_SIZE; j++){
+                System.out.print("["+matrix[i][j]+"]");
+            }
+            System.out.println("");
         }
 
 
