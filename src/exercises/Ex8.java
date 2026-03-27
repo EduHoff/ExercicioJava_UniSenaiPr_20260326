@@ -6,23 +6,22 @@ import java.util.Scanner;
 import utils.ConsoleUtils;
 
 /* 
-Crie um programa que leia uma matriz 3x3 de números inteiros e verifique se ela
-é simétrica, isto é, se os elementos acima da diagonal principal são iguais aos
-correspondentes abaixo dela.
+Faça um programa em Java que leia uma matriz 3x4 de números reais informados
+pelo usuário. Após o preenchimento completo da matriz, o programa deve exibir
+todos os valores armazenados e, em seguida, calcular e apresentar a média dos
+elementos de cada linha e também a média dos elementos de cada coluna.
 */
 
-public class Ex7 implements Exercise {
+public class Ex8 implements Exercise {
 
     private static final int ROW_SIZE = 3;
-    private static final int COLUMN_SIZE = 3;
+    private static final int COLUMN_SIZE = 4;
 
     @Override
     public void run(Scanner sc) {
-        System.out.println("--- Exercício 7 ---\n");
+        System.out.println("--- Exercício 8 ---\n");
 
         Integer[][] matrix = new Integer[ROW_SIZE][COLUMN_SIZE];
-        boolean isSymmetrical = true;
-
 
         int last_i = 0;
         int last_j = 0;
@@ -55,17 +54,6 @@ public class Ex7 implements Exercise {
             }
         }
 
-        start_loop:
-        for(int i=0; i<ROW_SIZE; i++){
-
-            for(int j=0; j<COLUMN_SIZE; j++){
-
-                if(i != j && !matrix[i][j].equals(matrix[j][i])) {
-                    isSymmetrical=false;
-                    break start_loop; 
-                }         
-            }
-        }
 
         for(int i=0; i<ROW_SIZE; i++){
             for(int j=0; j<COLUMN_SIZE; j++){
@@ -74,12 +62,22 @@ public class Ex7 implements Exercise {
             System.out.println("");
         }
 
-        if(isSymmetrical){
-            System.out.println("A Matriz é simétrica!");
-        }else{
-            System.out.println("A Matriz NÃO é simétrica!");
+        System.out.println("\n--- Média das Linhas ---");
+        for (int i = 0; i < ROW_SIZE; i++) {
+            double sum_row = 0;
+            for (int j = 0; j < COLUMN_SIZE; j++) {
+                sum_row += matrix[i][j];
+            }
+            System.out.printf("Linha %d: %.2f\n", i+1, (sum_row / COLUMN_SIZE));
         }
 
-       
+        System.out.println("\n--- Média das Colunas ---");
+        for (int j = 0; j < COLUMN_SIZE; j++) {
+            double sum_column = 0;
+            for (int i = 0; i < ROW_SIZE; i++) {
+                sum_column += matrix[i][j]; 
+            }
+            System.out.printf("Coluna %d: %.2f\n", j+1, (sum_column / ROW_SIZE));
+        }
     }
 }
