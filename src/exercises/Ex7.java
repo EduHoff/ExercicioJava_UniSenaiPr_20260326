@@ -6,20 +6,22 @@ import java.util.Scanner;
 import utils.ConsoleUtils;
 
 /* 
-Crie um programa que lê uma matriz 3x3 de números reais e exibe sua transposta
-(a matriz em que as linhas são trocadas pelas colunas).
+Crie um programa que leia uma matriz 3x3 de números inteiros e verifique se ela
+é simétrica, isto é, se os elementos acima da diagonal principal são iguais aos
+correspondentes abaixo dela.
 */
 
-public class Ex5 implements Exercise {
+public class Ex7 implements Exercise {
 
     private static final int ROW_SIZE = 3;
     private static final int COLUMN_SIZE = 3;
 
     @Override
     public void run(Scanner sc) {
-        System.out.println("--- Exercício 5 ---\n");
+        System.out.println("--- Exercício 7 ---\n");
 
-        Double[][] matrix = new Double[ROW_SIZE][COLUMN_SIZE];
+        Integer[][] matrix = new Integer[ROW_SIZE][COLUMN_SIZE];
+        boolean isSymmetrical = true;
 
 
         int last_i = 0;
@@ -33,7 +35,7 @@ public class Ex5 implements Exercise {
 
                         System.out.println("Digite um valor inteiro na linha "+(i+1)+" e coluna "+(j+1));
                         System.out.print("||");
-                        double num = sc.nextDouble();
+                        int num = sc.nextInt();
 
                         matrix[i][j] = num;
                         last_j = j + 1;
@@ -45,7 +47,7 @@ public class Ex5 implements Exercise {
                 }
             }catch(InputMismatchException e){
                 ConsoleUtils.clear();
-                System.out.println("Digite apenas números reais!\n");
+                System.out.println("Digite apenas números inteiros!\n");
                 sc.nextLine();
             }catch(Exception e){
                 ConsoleUtils.clear();
@@ -53,22 +55,24 @@ public class Ex5 implements Exercise {
             }
         }
 
-        System.out.println("Matriz original:");
+        start_loop:
         for(int i=0; i<ROW_SIZE; i++){
+
             for(int j=0; j<COLUMN_SIZE; j++){
-                System.out.print("["+matrix[i][j]+"]");
+
+                if(i != j && !matrix[i][j].equals(matrix[j][i])) {
+                    isSymmetrical=false;
+                    break start_loop; 
+                }         
             }
-            System.out.println("");
         }
 
-        System.out.println("------");
-
-        System.out.println("Matriz transposta:");
-        for(int i=0; i<ROW_SIZE; i++){
-            for(int j=0; j<COLUMN_SIZE; j++){
-                System.out.print("["+matrix[j][i]+"]");
-            }
-            System.out.println("");
+        if(isSymmetrical){
+            System.out.println("A Matriz é simétrica!");
+        }else{
+            System.out.println("A Matriz NÃO é simétrica!");
         }
+
+       
     }
 }
