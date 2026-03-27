@@ -86,6 +86,15 @@ public class Ex6 implements Exercise {
             }
         }
 
+        for (int i = 0; i < ROW_SIZE; i++) {
+            for (int j = 0; j < ROW_SIZE; j++) {
+                matrixC[i][j] = 0;
+                for (int k = 0; k < COLUMN_SIZE; k++) {
+                    matrixC[i][j] += matrixA[i][k] * matrixB[k][j];
+                }
+            }
+        }
+
 
         System.out.println("\nMatriz A (2x3):");
         for (int i = 0; i < ROW_SIZE; i++) {
@@ -110,8 +119,5 @@ public class Ex6 implements Exercise {
             }
             System.out.println("");
         }
-
-
-
     }
 }
