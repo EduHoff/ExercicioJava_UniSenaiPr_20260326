@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 import entities.StateTictactoe;
 import entities.Board;
-import entities.Pieces;
+import entities.Piece;
 import utils.ConsoleUtils;
 
 /* 
@@ -33,8 +33,8 @@ public class Ex9 implements Exercise {
 
         for(int i=0; i<ROW_SIZE; i++){
             for(int j=0; j<COLUMN_SIZE; j++){
-                Pieces tictactoe = new Pieces(StateTictactoe.N, i, j);
-                //Matrix[i][j] = tictactoe;
+                Piece piece = new Piece(StateTictactoe.N, i, j);
+                board.addBoard(piece);
             }  
         }
 
@@ -50,7 +50,7 @@ public class Ex9 implements Exercise {
         for (int i = 0; i < ROW_SIZE; i++) {
 
             for (int j = 0; j < COLUMN_SIZE; j++) {
-                System.out.printf(" %s ", Matrix[i][j].printPosition());
+                System.out.printf(" %s ", board.getPiece(i, j).printPosition());
                 if (j < COLUMN_SIZE - 1) System.out.print("|");
             }
             

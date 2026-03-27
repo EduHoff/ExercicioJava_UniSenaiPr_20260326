@@ -1,12 +1,12 @@
 package entities;
 
-public class Pieces {
+public class Piece {
 
     private StateTictactoe state;
     private int row;
     private int column;
 
-    public Pieces(StateTictactoe state, int row, int column) {
+    public Piece(StateTictactoe state, int row, int column) {
         this.state = state;
         this.row = row;
         this.column = column;
@@ -29,4 +29,19 @@ public class Pieces {
         }
     }
 
+    public StateTictactoe getState() {
+        return state;
+    }
+
+    public void setState(StateTictactoe state) {
+        this.state = state;
+    }
+
+    public int getRow() {
+        return row;
+    }
+
+    public int getColumn() {
+        return column;
+    }
 }
