@@ -47,18 +47,59 @@ public class Ex9 implements Exercise {
         System.out.printf(" %s | %s | %s \n", Matrix[2][0].printPosition(),Matrix[2][1].printPosition(),Matrix[2][2].printPosition());
         */
 
-        for (int i = 0; i < ROW_SIZE; i++) {
-
-            for (int j = 0; j < COLUMN_SIZE; j++) {
-                System.out.printf(" %s ", board.getPiece(i, j).printPosition());
-                if (j < COLUMN_SIZE - 1) System.out.print("|");
-            }
+        StateTictactoe player = StateTictactoe.X;
+        while (true) {
             
-            System.out.println();
+            try{
+                
+                System.out.println("\n=== VEZ DO JOGADOR " + player + " ===");
+                System.out.println("Escolha uma posição (1-9) ou digite 0 para sair: \n");
+                for (int i = 0; i < ROW_SIZE; i++) {
 
-            if (i < ROW_SIZE - 1) {
-                System.out.println("---+---+---");
-            }
+                    for (int j = 0; j < COLUMN_SIZE; j++) {
+                        System.out.printf(" %s ", board.getPiece(i, j).printPosition());
+                        if (j < COLUMN_SIZE - 1) System.out.print("|");
+                    }
+                    
+                    System.out.println();
+
+                    if (i < ROW_SIZE - 1) {
+                        System.out.println("---+---+---");
+                    }
+                }
+
+                
+
+                System.out.print("\n||");
+                int position = sc.nextInt();
+
+                if(position < 0 || position > 9){
+                    throw new InputMismatchException();
+                }
+
+                if (position == 0) {
+                    break;
+                }
+
+                board.placePiece(position, player);
+                player = (player.equals(StateTictactoe.X)) ? StateTictactoe.O : StateTictactoe.X;
+
+                ConsoleUtils.clear();
+
+            }catch(InputMismatchException e){
+                ConsoleUtils.clear();
+                System.out.println("Digite apenas números inteiros entre 0 até 9!\n");
+                sc.nextLine();
+            }catch(IllegalArgumentException e){
+                ConsoleUtils.clear();
+                System.out.println("Valor já foi utilizado!\n");
+                sc.nextLine();
+            }catch(Exception e){
+                ConsoleUtils.clear();
+                e.printStackTrace();
+            } 
         }
+
+        
     }
 }

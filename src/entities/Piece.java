@@ -12,14 +12,14 @@ public class Piece {
         this.column = column;
     }
 
-    private int getBoardPosition(){
-        return (row+1)*(column+1);
+    private int toBoardPosition(int row, int column){
+        return (row * 3) + column + 1;
     }
 
     public String printPosition(){
         switch (state) {
             case N:
-                return String.valueOf(this.getBoardPosition());
+                return String.valueOf(toBoardPosition(row, column));
             case X:
                 return "X";
             case O:
