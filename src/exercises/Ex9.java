@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 import entities.StateTictactoe;
 import entities.Board;
+import entities.GameResult;
 import entities.Piece;
 import utils.ConsoleUtils;
 
@@ -52,6 +53,7 @@ public class Ex9 implements Exercise {
             
             try{
                 
+                
                 System.out.println("\n=== VEZ DO JOGADOR " + player + " ===");
                 System.out.println("Escolha uma posição (1-9) ou digite 0 para sair: \n");
                 for (int i = 0; i < ROW_SIZE; i++) {
@@ -68,7 +70,23 @@ public class Ex9 implements Exercise {
                     }
                 }
 
-                
+                GameResult result = board.gameResult();
+                switch (result) {
+                    case GameResult.WIN:
+                        player = (player.equals(StateTictactoe.X)) ? StateTictactoe.O : StateTictactoe.X;
+
+                        System.out.println("\n===========================");
+                        System.out.println("     JOGADOR " + player + " VENCEU!     ");
+                        System.out.println("===========================\n");
+                        return;
+                    case GameResult.DRAW:
+                        System.out.println("\n===========================");
+                        System.out.println("       EMPATE (VELHA)      ");
+                        System.out.println("===========================\n");
+                        return;
+                    default:
+                        break;
+                }
 
                 System.out.print("\n||");
                 int position = sc.nextInt();
@@ -83,7 +101,6 @@ public class Ex9 implements Exercise {
 
                 board.placePiece(position, player);
                 player = (player.equals(StateTictactoe.X)) ? StateTictactoe.O : StateTictactoe.X;
-
                 ConsoleUtils.clear();
 
             }catch(InputMismatchException e){
@@ -99,7 +116,5 @@ public class Ex9 implements Exercise {
                 e.printStackTrace();
             } 
         }
-
-        
     }
 }

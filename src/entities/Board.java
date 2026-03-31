@@ -34,7 +34,7 @@ public class Board {
     public void placePiece(int position, StateTictactoe player){
         
         if (!list_used_positions.add(position)) {
-            throw new IllegalArgumentException("Esta posição já foi utilizada!");
+            throw new IllegalArgumentException("This position has already been used!");
         }
 
         int[] coords = totMatrixCoordinate(position);
@@ -43,5 +43,39 @@ public class Board {
 
         board[row][column].setState(player);   
     }
+
+    private boolean allStatesMatch(Piece p1, Piece p2, Piece p3) {
+        StateTictactoe s1 = p1.getState();
+        StateTictactoe s2 = p2.getState();
+        StateTictactoe s3 = p3.getState();
+
+        return s1 != StateTictactoe.N && s1 == s2 && s2 == s3;
+    }
+
+    public GameResult gameResult(){
+
+        for (int i = 0; i < row_size; i++) {
+            if (allStatesMatch(board[i][0], board[i][1], board[i][2])) {
+                return GameResult.WIN;
+            }
+        }
+
+        for (int i = 0; i < column_size; i++) {
+            if (allStatesMatch(board[0][i], board[1][i], board[2][i])) {
+                return GameResult.WIN;
+            }
+        }
+
+        if (allStatesMatch(board[0][0], board[1][1], board[2][2])) return GameResult.WIN;
+        if (allStatesMatch(board[0][2], board[1][1], board[2][0])) return GameResult.WIN;
+
+        if (list_used_positions.size() == 9) {
+            return GameResult.DRAW;
+        }
+
+        return GameResult.NOTHING;
+    }
+
+    
 
 }
