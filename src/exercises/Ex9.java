@@ -18,7 +18,7 @@ coluna ou diagonal. Caso todas as posições do tabuleiro sejam preenchidas sem
 que haja um vencedor, o programa deve indicar que o jogo terminou em velha. Além
 disso, o programa deve garantir que, uma vez colocado um símbolo no tabuleiro, a
 posição não possa ser selecionada novamente pelo outro jogador, evitando
-sobreposições.m a média dos elementos de cada coluna.
+sobreposições.
 */
 
 public class Ex9 implements Exercise {

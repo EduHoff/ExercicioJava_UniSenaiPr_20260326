@@ -1,9 +1,8 @@
 package application;
 
+import exercises.Exercise;
 import java.util.InputMismatchException;
 import java.util.Scanner;
-
-import exercises.Exercise;
 import utils.ConsoleUtils;
 
 
